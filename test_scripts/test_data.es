@@ -6,6 +6,12 @@ POST /inspections/_doc
 }
 
 
+POST /inspections/_doc
+{
+  "title": "Product2",
+  "desc": "Product2 Description"
+}
+
 PUT /inspections/_doc/ZOEq_WoBwlDqyhwXg78U
 {
   "title": "Product3",
@@ -25,13 +31,37 @@ POST _bulk
 { "index" : { "_index" : "inspections", "_type" : "_doc", "_id" : "3" } }
 { "title": "Product3", "desc": "Product3 Description"}
 
+POST _bulk
+{ "index" : { "_index" : "inspections", "_type" : "_doc", "_id" : "4" } }
+{ "title": "Soup1", "desc": "Soup1 Description"}
+{ "index" : { "_index" : "inspections", "_type" : "_doc", "_id" : "5" } }
+{ "title": "Soup2", "desc": "Soup2 Description"}
+
+
 
 GET /inspections/_doc/_search 
 
+GET /inspections/_doc/_search 
+{
+  "query": {
+    "match": {
+      "title": "Soup1"
+    }
+  },
+  "highlight": {
+    "fields": {
+      "title": {}
+    }
+  }
+}
 
 
 
-# Second
+
+
+
+
+# second
 
 PUT /inspections2 
 {
